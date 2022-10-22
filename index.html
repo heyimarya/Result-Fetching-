@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetching Result</title>
+   
+    <link rel="icon" href="https://i.pinimg.com/originals/3d/c1/6c/3dc16c9a108acecc37680f0ac48fdc7a.jpg">
+    <!-- <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">  -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+    <script>
+        function fetchResult(){
+            fetch("../data/result.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(result){
+                for(var result of result){
+                    var tr = document.createElement("tr");
+
+                    var tdRollNo = document.createElement("td");
+                    var tdName = document.createElement("td");
+                    var tdTotal = document.createElement("td");
+                    var tdDivision = document.createElement("td");
+
+                    tdRollNo.innerHTML = result.RollNo;
+                    tdName.innerHTML = result.Name;
+                    tdTotal.innerHTML = result.Total;
+                    tdDivision.innerHTML = result.Division;
+
+                    tr.appendChild(tdRollNo);
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdTotal);
+                    tr.appendChild(tdDivision);
+
+                    document.querySelector("tbody").appendChild(tr);
+                }
+            })
+        }
+    </script>
+
+</head>
+<body class="container-fluid">
+    <h1 class="bg-success text-center text-light p-2 mt-2">Allama Iqbal (10+2) College</h1>
+    <div class="text-center">
+        <hr>
+        <button onclick="fetchResult()" class="btn btn-primary">Fetch Result</button>
+        <hr>
+    </div>
+   
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Total</th>
+                <th>Division</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+    <hr>
+</body>
+</html>
